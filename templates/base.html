@@ -1,0 +1,39 @@
+{% block doc %}
+<!DOCTYPE html>
+<html>
+{% block html %}
+  <head>
+    {% block head %}
+      <title>Project Mgr</title>
+      <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" media="all">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+
+      {% block metas %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      {% endblock metas %}
+
+    {% endblock head %}
+  </head>
+
+  <body>
+    {% block body %}
+
+      {% block navbar %}
+      {% endblock navbar %}
+
+      {% block content %}
+      {% endblock content %}
+
+      {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      {% endblock scripts %}
+
+    {% endblock body %}
+  </body>
+{% endblock html %}
+</html>
+{% endblock doc %}
