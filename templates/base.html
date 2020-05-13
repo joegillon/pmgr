@@ -6,8 +6,7 @@
     {% block head %}
       <title>Project Mgr</title>
       <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" media="all">
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" media="all">
 
       {% block metas %}
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,9 +26,8 @@
       {% endblock content %}
 
       {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="{{ url_for('static', filename='js/lib/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/lib/bootstrap.min.js') }}"></script>
       {% endblock scripts %}
 
     {% endblock body %}

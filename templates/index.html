@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/datatables.min.css') }}"/>
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
   <!-- Table -->
@@ -51,18 +56,64 @@
 
 {% block scripts %}
   {{ super() }}
+  <script src="{{ url_for('static', filename='js/lib/datatables.min.js') }}"></script>
+  <script  src="{{ url_for('static', filename='js/lib/dataTables.buttons.min.js') }}"></script>
+  <script  src="{{ url_for('static', filename='js/lib/buttons.flash.min.js') }}"></script>
+  <script  src="{{ url_for('static', filename='js/lib/jszip.min.js') }}"></script>
+  <script  src="{{ url_for('static', filename='js/lib/pdfmake.min.js') }}"></script>
+  <script  src="{{ url_for('static', filename='js/lib/vfs_fonts.js') }}"></script>
+  <script  src="{{ url_for('static', filename='js/lib/buttons.html5.min.js') }}"></script>
+  <script  src="{{ url_for('static', filename='js/lib/buttons.print.min.js') }}"></script>
+
   <script>
     $(document).ready(function() {
       var table = $("#prj_tbl").DataTable({
-        "columnDefs": [
-          {"visible": false, "targets": 5},
+        dom: '<"toolbar">Bfrtip',
+        buttons: [
           {
-            "targets": -1,
-            "data": null,
-            "defaultContent": '<a href="#abstractModal" class="btn btn-info">Show</a>'
+            extend: 'copy',
+            text: 'Clipboard',
+            className: 'btn btn-secondary',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5]
+            }
+          },
+          {
+            extend: 'excel',
+            text: 'Spreadsheet',
+            className: 'btn btn-secondary',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5]
+            }
+          },
+          {
+            extend: 'csv',
+            text: 'CSV',
+            className: 'btn btn-secondary',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5]
+            }
+          },
+          {
+            extend: 'pdf',
+            text: 'PDF',
+            className: 'btn btn-secondary',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5]
+            }
+          }
+        ],
+        columnDefs: [
+          {visible: false, targets: 5},
+          {
+            targets: -1,
+            data: null,
+            defaultContent: '<a href="#abstractModal" class="btn btn-info">Show</a>'
           }
         ]
       });
+
+      $("div.toolbar").html('<b>Export Options:</b>');
 
       $('a[href$="#abstractModal"]').on("click", function() {
         var data = table.row($(this).parents('tr')).data();
